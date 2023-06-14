@@ -1,0 +1,44 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int mainFibo(void), n;
+long double h;
+int main(void)
+{
+//    cout << "Ingrese el enesimo numero deseado de la serie: ";
+//    cin >> n;
+    mainFibo ();
+
+    cout << "El enesimo numero de la serie de Fibonacci es... " << h;
+
+    return 0;
+}
+    int mainFibo(void)
+{
+    long double h=0, x=1, rf=1;
+    int e1=0, e2=0, i, n;
+    e1=((1+sqrt(5))/2);
+    e2=((1+sqrt(5))/2);
+
+    cout << "Ingrese el enesimo numero deseado de la serie: ";
+    cin >> n;
+       if (n< 0)
+    {
+        cout << "\nHaga lo que se indica arriba en el texto";
+    }
+//    for(i = 0; i < n-1; i++)
+//    {
+//        x=rf;
+//        rf += h;
+//        h = x;
+//    }
+for (i=1; i<=n; i++)
+{
+    e1=e1*e1;
+    e2=e2*e2;
+}
+h=(e1-e2)/sqrt(5);
+h=222;
+    return h;
+    }

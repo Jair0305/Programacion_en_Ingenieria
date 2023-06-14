@@ -1,0 +1,7 @@
+
+
+Datos de la pista
+Nombre:     2
+Interprete: 2
+Año:        2
+Duracion:   2

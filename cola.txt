@@ -1,0 +1,171 @@
+// syCiclos_do-while.cpp
+// R.E. Sánchez Yáñez
+
+// Directivas de preprocesador
+#include <iostream>
+#include <clocale>
+
+// Declaraciones globales
+using namespace std;
+
+// Prototipos de funciones
+int syVerificacionDeSalida(void);
+int syPausa(void);
+
+int syEsprimo(int num);
+int mainPrimos(void);
+
+
+
+
+int main(void)
+{
+	setlocale(LC_CTYPE, "Spanish"); // Para caracteres en Español
+	cout << "\nEjemplo de un menú básico.\n\n";
+	syPausa();
+
+   // un menú muy básico
+   int eleccion = 0;
+
+   do
+   {
+      do
+      {
+         system("cls");
+         // se muestran las opciones
+         cout << "\n\n\n\nEl menú es \n";
+         cout << "1. Abrir el explorador de archivos.\n";
+         cout << "2. Ejemplo de los P primeros números primos.\n";
+         cout << "3. Ejemplo con el ejecutable.\n";
+         cout << "4. Op 4.\n";
+
+         cout << "0. Salir.\n";
+
+         cout << "\nElección ? ";
+
+         // se captura la opción deseada
+         cin >> eleccion; cin.ignore();
+      } while( eleccion<0 || eleccion>4 );
+
+      switch(eleccion)
+      {
+         case 1:
+            system("explorer.exe");
+            break;
+         case 2:
+            cout << "\n\nEjecutaremos la tarea de los números primos.\n";
+            mainPrimos();
+            break;
+         case 3:
+            cout << "\n\nEjecutando la tarea de los números primos.\n";
+            system("C:\\Users\\SanchezY\\Dropbox\\syCURSOS\\syCur_PING\\syPI_2021_s1\\código\\sy0218b_P_PrimerosNumPrimos.exe");
+            break;
+         case 0:
+            cout << "\n\nRutina de salida.\n";
+            eleccion = syVerificacionDeSalida();
+            break;
+         default:
+            cout << "\n\nTarea indefinida, al menos por el momento.\n";
+            syPausa();
+      }
+   } while( eleccion );
+
+   return 0;
+}
+
+int syVerificacionDeSalida(void)
+{
+   int decision;
+   do
+   {
+      cout << "\n\nConfirmas tu deseo de salir 0=SALIR 1=CONTINUAR: ? ";
+      cin >> decision; cin.ignore();
+   } while(decision < 0 || decision > 1);
+
+   // Regresar un 1 si NO QUIERE SALIR; un 0 si SI QUIERE SALIR
+   return decision;
+}
+
+int syPausa(void)
+{
+   cout << "\n\nPara salir, presiona <Enter>.";
+   cin.get();
+   return 0;
+}
+
+
+
+int mainPrimos(void)
+{
+   setlocale(LC_CTYPE,"Spanish");
+
+   cout << "Cálculo del promedio de los P primeros números primos." << endl;
+
+   int P;
+   cout << "\nIntroduce un número entero para P: ? ";
+   cin >> P; cin.ignore();
+
+   if(P<1)
+   {
+      cout << "\nP debe ser al menos 1.\n";
+      return 1;
+   }
+
+   cout << "\nLos " << P << " primeros números primos son:\n";
+
+
+   // Los P primeros números primos y su promedio y QUE NO ESTÉN EN EL RANGO DE 50 A 100
+
+   int contador = 0;
+   float promedio = 0.0;
+
+   for(int k=0; contador < P ; k++ )
+   {
+      if( k>50 && k<100 )
+         continue;
+
+      if( syEsprimo(k) )
+      {
+         cout << k << " ";
+         contador++;
+         promedio += k;
+      }
+   }
+   promedio /= P;
+   cout << "\n\nEl promedio de estos números es " << promedio << endl;
+
+   syPausa();
+   return 0;
+}
+// Fin de función main()
+
+// Inicio de definición de funciones ...
+int syEsprimo(int num)
+{
+   int esPrimo = 1;
+   // Verificación de si num es primo o no
+   if (num < 2)
+   {
+      esPrimo = 0;
+   }
+   else
+   {
+      if (num == 2 || num == 3)
+         esPrimo = 1;
+      else
+      {
+         if(num%2==0)
+         esPrimo = 0;
+         else
+         {
+            for(int k=3; k < num/2 ; k+=2 )
+               if( num%k == 0)
+               {
+                  esPrimo = 0;
+                  break;
+               }
+         }
+      }
+   }
+   return esPrimo;
+}
